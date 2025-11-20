@@ -1,4 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
 
-window.iceCreamFlavors = ['chocolate', 'vanilla', 'twist'];
+<div id="result"></div>
 
-document.getElementById('result').innerHTML = iceCreamFlavors;
+<script>
+  window.iceCreamFlavors = ['chocolate', 'vanilla', 'twist'];
+  document.getElementById('result').innerHTML = iceCreamFlavors;
+</script>
+
+<script src="index.js"></script>
+</body>
+</html>
