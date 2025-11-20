@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-<body>
+// Ensure a container exists and update it with the flavors
+let result = document.getElementById('result');
+if (!result) {
+  result = document.createElement('div');
+  result.id = 'result';
+  document.body.appendChild(result);
+}
 
-<div id="result"></div>
-
-<script>
-  window.iceCreamFlavors = ['chocolate', 'vanilla', 'twist'];
-  document.getElementById('result').innerHTML = iceCreamFlavors;
-</script>
-
-<script src="index.js"></script>
-</body>
-</html>
+window.iceCreamFlavors = ['chocolate', 'vanilla', 'twist'];
+result.textContent = window.iceCreamFlavors.join(', ');
