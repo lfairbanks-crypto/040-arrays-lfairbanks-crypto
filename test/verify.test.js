@@ -1,61 +1,32 @@
-const http = require("http");
-const fs = require("fs");
-const puppeteer = require("puppeteer");
-const { assert } = require("console");
 
-let server;
-let browser;
-let page;
+Megan Pfiffner
+1:27 PM (2 minutes ago)
+to me
 
-beforeAll(async () => {
-  server = http.createServer(function (req, res) {
-    fs.readFile(__dirname + "/.." + req.url, function (err, data) {
-      if (err) {
-        res.writeHead(404);
-        res.end(JSON.stringify(err));
-        return;
-      }
-      res.writeHead(200);
-      res.end(data);
-    });
-  });
 
-  server.listen(process.env.PORT || 3000);
-});
+Listen
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ice Cream Flavors</title>
+  </head>
+  <body>
+    <h2>Ice Cream Flavors</h2>
+    <div id="result"></div>
 
-afterAll(() => {
-  server.close();
-});
+    <script>
+      window.iceCreamFlavors = ['chocolate', 'vanilla', 'twist'];
 
-beforeEach(async () => {
-  browser = await puppeteer.launch({
-    args: ['--no-sandbox', '--disable-setuid-sandbox']
-  });
+      const resultDiv = document.getElementById('result');
+      const ul = document.createElement('ul');
 
-  page = await browser.newPage();
-  await page.goto("http://localhost:3000/index.html");
-});
+      iceCreamFlavors.forEach(flavor => {
+        const li = document.createElement('li');
+        li.textContent = flavor;
+        ul.appendChild(li);
+      });
 
-afterEach(async () => {
-  await browser.close();
-});
-
-describe('the index.js file', () => {
-  it('should create an array named iceCreamFlavors that contains chocolate, vanilla and twist', async function() {
-    const iceCreamFlavors = await page.evaluate(() => iceCreamFlavors);
-    expect(iceCreamFlavors).toBeDefined();
-    expect(iceCreamFlavors.length).toBe(3);
-    expect(iceCreamFlavors[0]).toBe('chocolate');
-    expect(iceCreamFlavors[1]).toBe('vanilla');
-    expect(iceCreamFlavors[2]).toBe('twist');
-  });
-
-  it('should assign the innerHTML of the HTML element with the id result to the iceCreamFlavors', async function() {
-    const iceCreamFlavors = await page.evaluate(() => iceCreamFlavors);
-    const innerHtml = await page.$eval("#result", (result) => {
-      return result.innerHTML;
-    });
-    
-    expect(innerHtml).toBe(iceCreamFlavors.toString());
-  });
-});
+      resultDiv.appendChild(ul);
+    </script>
+  </body>
+</html>

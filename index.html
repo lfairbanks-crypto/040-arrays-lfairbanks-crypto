@@ -1,14 +1,32 @@
+
+Megan Pfiffner
+1:27 PM (2 minutes ago)
+to me
+
+
+Listen
 <!DOCTYPE html>
 <html>
-<body>
+  <head>
+    <title>Ice Cream Flavors</title>
+  </head>
+  <body>
+    <h2>Ice Cream Flavors</h2>
+    <div id="result"></div>
 
-<div id="result"></div>
+    <script>
+      window.iceCreamFlavors = ['chocolate', 'vanilla', 'twist'];
 
-<script>
-  window.iceCreamFlavors = ['chocolate', 'vanilla', 'twist'];
-  document.getElementById('result').innerHTML = iceCreamFlavors;
-</script>
+      const resultDiv = document.getElementById('result');
+      const ul = document.createElement('ul');
 
-<script src="index.js"></script>
-</body>
+      iceCreamFlavors.forEach(flavor => {
+        const li = document.createElement('li');
+        li.textContent = flavor;
+        ul.appendChild(li);
+      });
+
+      resultDiv.appendChild(ul);
+    </script>
+  </body>
 </html>
